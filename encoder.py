@@ -11,6 +11,21 @@ def displayMenu():
 def encode(raw):
     return "".join([str(int(c) + 3) for c in raw])
 
+# decode the encoded data back to the original password by subtracting  3
+def decode(encoded):
+    raw = ''
+
+    for i in range(len(password)):
+
+        if (int(password[i])) < 3:
+            digit = str(int(password[i]) + 7)
+            raw += digit
+        else:
+            digit = str(int(password[i]) -3)
+            raw += digit
+
+    return raw
+
 def main():
     print("Welcome to the encoder. Select an option below")
 
