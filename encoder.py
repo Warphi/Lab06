@@ -3,16 +3,17 @@
 # display main menu
 def displayMenu():
     print("""
-    1: Encode
-    2: Decode
+1: Encode
+2: Decode
+3: Quit
     """)
 
 # encode the raw data by adding 3 to each number
 def encode(raw):
-    return "".join([str(int(c) + 3) for c in raw])
+    return "".join([str((int(c) + 3) % 10) for c in raw])
 
 # decode the encoded data back to the original password by subtracting  3
-def decode(encoded):
+def decode(password):
     raw = ''
 
     for i in range(len(password)):
@@ -36,7 +37,7 @@ def main():
         try:
             choice = input("Please enter your choice: ")
 
-            if int(choice) != 1 or int(choice) != 2:
+            if int(choice) < 1 or int(choice) > 3:
                 print("Invalid choice. Please try again")
                 continue
         except:
@@ -51,10 +52,13 @@ def main():
             print("Encoded:", encoded)
         # decode
         if choice == "2":
-            encoded = input("\n Please enter string to be decoded:")
+            encoded = input("\nPlease enter string to be decoded:")
             raw = decode(encoded)
 
             print("Decoded:", raw)
+        # quit
+        if choice == "3":
+            break
 
 if __name__ == "__main__":
     main()
