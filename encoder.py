@@ -3,9 +3,11 @@
 # display main menu
 def displayMenu():
     print("""
-1: Encode
-2: Decode
-3: Quit
+Menu
+-------------
+1. Encode
+2. Decode
+3. Quit
     """)
 
 # encode the raw data by adding 3 to each number
@@ -28,14 +30,14 @@ def decode(password):
     return raw
 
 def main():
-    print("Welcome to the encoder. Select an option below")
+    encoded = ""
 
     while True:
         displayMenu()
         
         # input validation
         try:
-            choice = input("Please enter your choice: ")
+            choice = input("Please enter an option: ")
 
             if int(choice) < 1 or int(choice) > 3:
                 print("Invalid choice. Please try again")
@@ -46,16 +48,13 @@ def main():
 
         # encode
         if choice == "1":
-            raw = input("\nPlease enter string to be encoded: ")
+            raw = input("Please enter your password to encode: ")
             encoded = encode(raw)
-
-            print("Encoded:", encoded)
+            print("Your password has been encoded and stored!")
         # decode
         if choice == "2":
-            encoded = input("\nPlease enter string to be decoded:")
             raw = decode(encoded)
-
-            print("Decoded:", raw)
+            print(f"The encoded password is {encoded}, and the original password is {decode(encoded)}.")
         # quit
         if choice == "3":
             break
